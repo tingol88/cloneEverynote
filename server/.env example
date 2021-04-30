@@ -1,2 +1,6 @@
 PORT = 
 DB = 
+HOST = 
+CLIENT_PORT = 
+EMAIL_LOGIN = 
+EMAIL_PASS = 

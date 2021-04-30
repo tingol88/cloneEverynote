@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 const { Schema, model, pluralize } = mongoose;
 pluralize(null);
 
@@ -7,8 +8,10 @@ const userSchema = Schema({
   surname: String,
   email: String,
   password: String,
-  createdAt: Date,
+  createdAt: { type: Date, default: Date.now() },
+  confirmEmailHash: String,
+  isConfirmed: { type: Boolean, default: false },
 });
 
-const User = model("users", userSchema);
+const User = model('users', userSchema);
 export default User;

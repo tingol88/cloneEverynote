@@ -97,8 +97,6 @@ router.post('/register', async (req, res) => {
 //= =========confirmEmail========
 router.get('/confirm-email', async (req, res) => {
   const hash = req.query.h;
-  console.log(req.query);
-
   const user = await User.findOne({ confirmEmailHash: hash });
   if (!user) return res.status(404).json({ message: 'Error find user' });
   await user.updateOne({ isConfirmed: true });

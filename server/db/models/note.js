@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 const { Schema, model, pluralize } = mongoose;
 
 pluralize(null);
@@ -7,9 +8,10 @@ const noteSchema = {
   id: String,
   title: String,
   content: String,
-  createdAt: Date,
-  notebook: { type: Schema.ObjectId, ref: "Notebook" },
+  createdAt: { type: Date, default: Date.now() },
+  category: { type: String, default: 'None category' },
+  notebook: { type: Schema.ObjectId, ref: 'Notebook' },
 };
 
-const Note = model("notes", noteSchema);
+const Note = model('notes', noteSchema);
 export default Note;

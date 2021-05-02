@@ -3,6 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, Typography } from "@material-ui/core";
 import { AccountCircle, Copyright } from "@material-ui/icons";
+import { validate } from "../../helpers/helpers";
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -55,6 +57,7 @@ const RegisterForm: React.FC<Props> = () => {
     setSignUpData({ ...signUpData, [inputName]: event.target.value });
   };
   return (
+    <>
     <Grid container spacing={1} alignItems="flex-end" justify="center">
       <div>
         <form
@@ -124,7 +127,8 @@ const RegisterForm: React.FC<Props> = () => {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                autoFocus
+                value={signUpData.name}
+                onChange={(e) => handleChangeName(e, "name")}                autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -135,6 +139,8 @@ const RegisterForm: React.FC<Props> = () => {
                 id="lastName"
                 label="Last Name"
                 name="lastName"
+                value={signUpData.surname}
+                onChange={(e) => handleChangeName(e, "surname")}
                 autoComplete="lname"
               />
             </Grid>
@@ -146,6 +152,8 @@ const RegisterForm: React.FC<Props> = () => {
                 id="email"
                 label="Email Address"
                 name="email"
+                value={signUpData.email}
+                onChange={(e) => handleChangeName(e, "email")}
                 autoComplete="email"
               />
             </Grid>
@@ -158,6 +166,8 @@ const RegisterForm: React.FC<Props> = () => {
                 label="Password"
                 type="password"
                 id="password"
+                value={signUpData.password}
+                onChange={(e) => handleChangeName(e, "password")}
                 autoComplete="current-password"
               />
             </Grid>
@@ -191,6 +201,7 @@ const RegisterForm: React.FC<Props> = () => {
       </Box>
     </Container>
     </Grid>
+    </>
   );
 };
 

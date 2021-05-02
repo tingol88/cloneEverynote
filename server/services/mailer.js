@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 const user = process.env.EMAIL_LOGIN;
 const pass = process.env.EMAIL_PASS;
-console.log(user, pass);
 
 export default async (subject, html, attachments, recipient) => {
   const transporter = nodemailer.createTransport({

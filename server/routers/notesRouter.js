@@ -51,10 +51,23 @@ router.delete('/', async (req, res) => {
       if (note.title) return res.status(200).json({ note });
       return res.status(403).json({ message: 'this id does not exist' });
     } catch (error) {
-      console.log(error);
       return res.status(500);
     }
   }
   return res.status(403).json({ message: 'введите корректные данные' });
+});
+// нужно написать
+router.patch('/', async (req, res) => {
+  const {
+    id, title, content, category,
+  } = req.body;
+  if (id && title && content && category) {
+    try {
+      const updatedPost = await Note.findByIdAndUpdate(id, { title, content, category });
+      return res.status(200).json(updatedPost);
+    } catch (error) {
+      return res.status(500).json({ message: error });
+    }
+  } else return res.status(403).json({ message: 'uncorrected input data' });
 });
 export default router;

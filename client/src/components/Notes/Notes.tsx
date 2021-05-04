@@ -63,7 +63,7 @@ const Notes: React.FC<NotesProps> = () => {
     justify="space-evenly" 
     className={classes.cardWrapper} 
     >
-      {notes.length? notes.map(({id, title, content})=> (<NotebookCard id={id} title={title} content={content} />)) : 'netu'}
+      {notes.length? notes.map(({id, title, content})=> (<NotebookCard key={id} id={id} title={title} content={content} />)) : 'netu'}
     </Grid>
   </Grid> );
 }

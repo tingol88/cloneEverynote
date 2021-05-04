@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./App.css";
+import LoginForm from "./components/LoginForm/LoginForm";
 // import Notebooks from './components/Notebooks/Notebooks';
 import Notes from "./components/Notes/Notes";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
@@ -13,6 +14,7 @@ function App() {
       <Notes />
       <ResponsiveDrawer />
       <RegisterForm />
+      <LoginForm />
     </div>
   );
 }

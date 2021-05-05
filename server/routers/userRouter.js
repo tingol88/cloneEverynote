@@ -52,7 +52,7 @@ router.post('/login', async (req, res) => {
     return res.sendStatus(501);
   }
   // if user yet unconfirmd email we are cancel login
-  if (!user.isConfirmed) return res.status(403).json({ message: 'unconfirmed email' });
+  // if (!user.isConfirmed) return res.status(403).json({ message: 'unconfirmed email' });
   req.session.user = { id: user._id };
   const {
     _id, name, surname, isConfirmed, createdAt,

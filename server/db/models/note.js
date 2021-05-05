@@ -5,7 +5,6 @@ const { Schema, model, pluralize } = mongoose;
 pluralize(null);
 
 const noteSchema = {
-  id: String,
   title: String,
   content: String,
   createdAt: { type: Date, default: Date.now() },

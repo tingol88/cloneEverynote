@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
@@ -20,6 +21,9 @@ import {
   validateEmail,
   validateName,
 } from "../../helpers/helpers";
+// import initialState from "../../redusers/initalState";
+// import mainReduser from "../../redusers/mainReduser";
+// import { initialStateType } from "../../types";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -61,6 +65,10 @@ type ErrorType = {
 };
 
 const RegisterForm: React.FC<Props> = () => {
+  // const [state, dispatch] = useReducer<React.Reducer<initialStateType,A:any>>(mainReduser, initialState);
+  const userFromRedux = useSelector<any>(state => state.user)
+  console.log("userFromRedux",userFromRedux);
+  
   const classes = useStyles();
   const [signUpData, setSignUpData] = useState<StateType>({
     name: "",
@@ -70,7 +78,7 @@ const RegisterForm: React.FC<Props> = () => {
   });
   const [error, setError] = useState<ErrorType>({});
   const [user, setUser] = useState({});
-  const history = useHistory()
+  const history = useHistory();
 
   const handleChangeInput = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -82,7 +90,6 @@ const RegisterForm: React.FC<Props> = () => {
   const hadleOnSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     setError({}); // for clear catching error
-    console.log("signUpData", signUpData);
 
     if (!validateEmail(signUpData.email)) {
       setError({ message: "Uncorrected email format" });
@@ -114,13 +121,12 @@ const RegisterForm: React.FC<Props> = () => {
       .then((responce) => responce.json())
       .then((result) => {
         setUser(result);
-        history.push('/')
+        history.push("/");
       })
       .catch((e) => {
         setError(e);
       });
   };
-  console.log("user", user);
 
   return (
     <>

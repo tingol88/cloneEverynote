@@ -1,5 +1,7 @@
 import React from "react";
+import { Provider } from "react-redux";
 
+import { store } from "./redux/store.js";
 import "./App.css";
 import LoginForm from "./components/LoginForm/LoginForm";
 // import Notebooks from './components/Notebooks/Notebooks';
@@ -9,13 +11,15 @@ import ResponsiveDrawer from "./components/Sidebar/Sidebar";
 
 function App() {
   return (
-    <div>
-      {/* <Notebooks /> */}
-      <Notes />
-      <ResponsiveDrawer />
-      <RegisterForm />
-      <LoginForm />
-    </div>
+    <Provider store={store}>
+      <div>
+        {/* <Notebooks /> */}
+        <Notes />
+        <ResponsiveDrawer />
+        <RegisterForm />
+        <LoginForm />
+      </div>
+    </Provider>
   );
 }
 

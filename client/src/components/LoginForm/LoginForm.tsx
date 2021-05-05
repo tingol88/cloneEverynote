@@ -82,7 +82,7 @@ const LoginForm: React.FC<LoginFormProps> = () => {
       setUser(result);
     }
   };
-  console.log("user", user);
+
 
   return (
     <>
@@ -103,7 +103,6 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                     variant="outlined"
                     required
                     fullWidth
-                    id="email"
                     label="Email Address"
                     name="email"
                     value={signInData.email}
@@ -119,7 +118,6 @@ const LoginForm: React.FC<LoginFormProps> = () => {
                     name="password"
                     label="Password"
                     type="password"
-                    id="password"
                     value={signInData.password}
                     onChange={(e) => handleChangeInput(e, "password")}
                     autoComplete="current-password"

@@ -7,6 +7,7 @@ pluralize(null);
 const noteSchema = {
   title: String,
   content: String,
+  author: String,
   createdAt: { type: Date, default: Date.now() },
   category: { type: String, default: 'None category' },
   notebook: { type: Schema.ObjectId, ref: 'Notebook' },

@@ -29,12 +29,13 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  console.log('hi from router addnote', req.body);
   const {
-    title, autor, content, category,
+    title, author, content, category,
   } = req.body;
-  if (title && autor && content) {
+  if (title && author && content) {
     const note = await Note.create({
-      title, autor, content, category,
+      title, author, content, category,
     });
     return res.status(200).json(note);
   }

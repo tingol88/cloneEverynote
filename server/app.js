@@ -10,6 +10,8 @@ import FileStoreSession from 'session-file-store';
 
 import notesRouter from './routers/notesRouter.js';
 import userRouter from './routers/userRouter.js';
+import authorRouter from './routers/authorRouter.js';
+
 
 dotenv.config();
 const app = express();
@@ -47,6 +49,7 @@ app.use(
 // пример роутинга
 app.use('/notes', notesRouter);
 app.use('/user', userRouter);
+app.use('/authors', authorRouter);
 
 const PORT = process.env.PORT || 5000;
 

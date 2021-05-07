@@ -59,36 +59,46 @@ export default function AddNoteForm() {
     setCategory(event.target.value);
   };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    setError('')
+    setError("");
     event.preventDefault();
-    if(content && title && author &&category) {
-      console.log("handleSubmit",`${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes/`);
+    if (content && title && author && category) {
+      console.log(
+        "handleSubmit",
+        `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes/`
+      );
 
-     fetch(
-       `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes/`,
-       {
-         method: "POST",
-         headers: {
-           "Content-Type": "application/json",
-         },
-         credentials: "include",
-         body: JSON.stringify({
-           title,
-           author,
-           content,
-           category,
-         }),
-       }
-     )
-       .then((response) => response.json())
-       .then((result) => {
-         console.log(result);
-       })
-       .catch((e) => {
-         setError(JSON.stringify(e));
-       });
-   } else {setError('please fill all fields')}
-   }
+      fetch(
+        `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({
+            title,
+            author,
+            content,
+            category,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          setContent('');
+          setTitle("");
+          setAuthor("vasya");
+          setCategory("travel");
+          setError("");
+          console.log(result);
+        })
+        .catch((e) => {
+          setError(JSON.stringify(e));
+        });
+    } else {
+      setError("please fill all fields");
+    }
+  };
 
   return (
     <div className={classes.root}>

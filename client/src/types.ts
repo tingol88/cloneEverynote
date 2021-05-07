@@ -17,7 +17,7 @@ export type NoteType = {
   notebook: string[];
 };
 export type NotebookType = {
-  id: string;
+  _id: string;
   title: string;
   createdAt: Date;
   notes: Array<NoteType["id"]>;

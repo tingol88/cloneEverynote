@@ -8,7 +8,7 @@
 //   notebook: NotebookType;
 // };
 export type NoteType = {
-  id: string;
+  _id: string;
   title: string;
   content: string;
   createdAt: Date;
@@ -20,7 +20,7 @@ export type NotebookType = {
   _id: string;
   title: string;
   createdAt: Date;
-  notes: Array<NoteType["id"]>;
+  notes: Array<NoteType["_id"]>;
 };
 export type UserType = {
   createdAt: Date;

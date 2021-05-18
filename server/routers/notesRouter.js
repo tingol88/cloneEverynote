@@ -29,7 +29,6 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  console.log('hi from router addnote', req.body);
   const {
     title, author, content, category,
   } = req.body;

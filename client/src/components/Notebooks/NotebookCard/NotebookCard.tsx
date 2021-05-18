@@ -23,14 +23,17 @@ type NotebookCardPropsType = {
   id: string;
   title: string;
   content: string;
+  onDelete: (id: string) => void;
 };
 
 export default function NotebookCard({
   id,
   title,
   content,
+  ...props
 }: NotebookCardPropsType) {
   const classes = useStyles();
+const handleDelete =  (event: React.MouseEvent) => props.onDelete(id)
 
   return (
     <Card className={classes.root}>
@@ -50,11 +53,11 @@ export default function NotebookCard({
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Удалить
-        </Button>
-        <Button size="small" color="primary">
+      <Button size="small" color="primary">
           Подробнее
+        </Button>
+        <Button onClick={handleDelete} size="small" color="primary">
+          Удалить
         </Button>
       </CardActions>
     </Card>

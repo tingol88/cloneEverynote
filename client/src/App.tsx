@@ -7,7 +7,7 @@ import {
   Switch,
 } from "react-router-dom";
 
-import { store } from "./redux/store.js";
+import { store } from "./redux/store";
 import "./App.css";
 import LoginForm from "./components/LoginForm/LoginForm";
 // import Notebooks from './components/Notebooks/Notebooks';

@@ -1,3 +1,4 @@
+import { ActionTypes } from "./redux/actionTypes";
 // писал по другой db
 // export type NoteType = {
 //   id: string;
@@ -31,7 +32,21 @@ export type UserType = {
   surname: string;
 };
 
+// store
+export type typeofActionType = string;
+
 export type initialStateType = {
   user: UserType | {};
   notes: Array<NoteType> | [];
+};
+
+// actions
+export type actionUpdateNameType = {
+  type: typeof ActionTypes.CHANGE_NAME;
+  payload: string;
+};
+
+export type actionUpdateSurnameType = {
+  type: typeof ActionTypes.CHANGE_SURNAME;
+  payload: string;
 };

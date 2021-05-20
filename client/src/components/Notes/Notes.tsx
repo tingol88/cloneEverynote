@@ -4,7 +4,7 @@ import { Grid } from "@material-ui/core";
 import NotebookCard from "../Notebooks/NotebookCard/NotebookCard";
 import { initialStateType, NoteType } from "../../types";
 import { useDispatch, useSelector } from "react-redux";
-import { actionSetNotes } from "../../redux/actionCreators/notes";
+import { actionDeleteNote, actionSetNotes } from "../../redux/actionCreators/notes";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,18 +30,12 @@ const Notes: React.FC<NotesProps> = () => {
   const dispatch = useDispatch();
   // const [notes, setNotes] = useState<NoteType[]>([]);
   const notes = useSelector((store:initialStateType)=> store.notes);
-  console.log('notes from redux--->', notes);
-  
+   console.log('notes',notes);
   useEffect(() => {
     dispatch(actionSetNotes())
-    // fetch(
-    //   `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes`
-    // )
-    //   .then((response) => response.json())
-      // .then((result) => setNotes(result));
   }, []);
   const handleDelete = (id: string): void => {
-    // setNotes((prev) => prev.filter((el) => el._id !== id));
+    dispatch(actionDeleteNote(id))
   };
   return (
     <Grid

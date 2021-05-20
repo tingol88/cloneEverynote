@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import { actionCreateNote } from "../../redux/actionCreators/notes";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
@@ -11,6 +12,7 @@ import {
   MenuItem,
   Button,
 } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,61 +42,48 @@ const authorsArr = ["vasya", "petya", "misha"];
 
 export default function AddNoteForm() {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("vasya");
   const [category, setCategory] = useState("travel");
   const [error, setError] = useState("");
+  const [done, setDone] = useState('')
 
   const handleTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDone('')
     setTitle(event.target.value);
   };
   const handleContent = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDone('')
     setContent(event.target.value);
   };
   const handleAuthor = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDone('')
     setAuthor(event.target.value);
   };
   const handleCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDone('')
     setCategory(event.target.value);
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     setError("");
     event.preventDefault();
     if (content && title && author && category) {
-      console.log(
-        "handleSubmit",
-        `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes/`
-      );
-
-      fetch(
-        `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            title,
-            author,
-            content,
-            category,
-          }),
-        }
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          setContent('');
-          setTitle("");
-          setAuthor("vasya");
-          setCategory("travel");
-          setError("");
-          console.log(result);
-        })
-        .catch((e) => {
-          setError(JSON.stringify(e));
-        });
+      try {
+        await dispatch(actionCreateNote(content, title, author, category));  
+      } catch (e) {
+        setError(JSON.stringify(e));
+      }
+      setContent("");
+      setTitle("");
+      setAuthor("vasya");
+      setCategory("travel");
+      setError("");
+      setDone("Успешно добавленно")
+      // } catch((e: any) => {
+      //   setError(JSON.stringify(e));
+      // });
     } else {
       setError("please fill all fields");
     }
@@ -106,6 +95,7 @@ export default function AddNoteForm() {
         <Grid item xs={9}>
           <Paper className={classes.paper}>
             {error ? error : null}
+            {done? done: null}
             <form
               onSubmit={handleSubmit}
               className={classes.root}
@@ -200,4 +190,11 @@ export default function AddNoteForm() {
       </Grid>
     </div>
   );
+}
+function dispatch(arg0: any) {
+  throw new Error("Function not implemented.");
+}
+
+function setError(arg0: string) {
+  throw new Error("Function not implemented.");
 }

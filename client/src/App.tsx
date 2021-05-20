@@ -15,6 +15,7 @@ import { Notes } from "./components/Notes/Notes";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import ResponsiveDrawer from "./components/Sidebar/Sidebar";
 import AddNoteForm from "./components/AddNoteForm/AddNoteForm";
+import Authors from "./components/Authors/Authors";
 
 function App() {
   return (
@@ -24,7 +25,6 @@ function App() {
           <ResponsiveDrawer />
           <Switch>
             <Route path="/add-note">
-              hjgjhg
               <AddNoteForm />
             </Route>
             <Route exact path="/">
@@ -35,6 +35,9 @@ function App() {
             </Route>
             <Route path="/login">
               <LoginForm />
+            </Route>
+            <Route path="/authors">
+              <Authors />
             </Route>
             <Redirect to="/" />
           </Switch>

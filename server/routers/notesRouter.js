@@ -48,7 +48,7 @@ router.delete('/', async (req, res) => {
   if (id) {
     try {
       const note = await Note.findByIdAndDelete(id);
-      if (note.title) return res.status(200).json({ note });
+      if (note.title) return res.status(200).json(note);
       return res.status(403).json({ message: 'this id does not exist' });
     } catch (error) {
       return res.status(500);

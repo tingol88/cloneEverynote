@@ -45,10 +45,10 @@ const handleDelete =  (event: React.MouseEvent) => props.onDelete(id)
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {title}
+           Название: {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {content}
+           Контент: {content}
           </Typography>
         </CardContent>
       </CardActionArea>

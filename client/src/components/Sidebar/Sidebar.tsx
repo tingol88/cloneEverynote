@@ -78,7 +78,7 @@ export default function ResponsiveDrawer(props: Props) {
       <List>
         {[
           ["Добавить заметку", "/add-note"],
-          ["Блокнот 1", "/"],
+          ["Авторы", "/authors"],
           ["Блокнот 2", "/"],
           ["На главную", "/"],
         ].map((text, index) => (

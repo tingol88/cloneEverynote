@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import { Grid } from "@material-ui/core";
 import NotebookCard from "../Notebooks/NotebookCard/NotebookCard";
-import { NoteType } from "../../types";
+import { initialStateType, NoteType } from "../../types";
+import { useDispatch, useSelector } from "react-redux";
+import { actionSetNotes } from "../../redux/actionCreators/notes";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,18 +24,24 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 export interface NotesProps {}
 
+
 const Notes: React.FC<NotesProps> = () => {
   const classes = useStyles();
-  const [notes, setNotes] = useState<NoteType[]>([]);
+  const dispatch = useDispatch();
+  // const [notes, setNotes] = useState<NoteType[]>([]);
+  const notes = useSelector((store:initialStateType)=> store.notes);
+  console.log('notes from redux--->', notes);
+  
   useEffect(() => {
-    fetch(
-      `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes`
-    )
-      .then((response) => response.json())
-      .then((result) => setNotes(result));
+    dispatch(actionSetNotes())
+    // fetch(
+    //   `${process.env.REACT_APP_API_URL}:${process.env.REACT_APP_API_PORT}/notes`
+    // )
+    //   .then((response) => response.json())
+      // .then((result) => setNotes(result));
   }, []);
   const handleDelete = (id: string): void => {
-    setNotes((prev) => prev.filter((el) => el._id !== id));
+    // setNotes((prev) => prev.filter((el) => el._id !== id));
   };
   return (
     <Grid
@@ -54,7 +62,7 @@ const Notes: React.FC<NotesProps> = () => {
         className={classes.cardWrapper}
       >
         {notes.length
-          ? notes.map(({ _id, title, content }) => (
+          ? notes.map(({ _id, title, content }:any) => (
               <NotebookCard
                 key={_id}
                 id={_id}

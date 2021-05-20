@@ -126,18 +126,33 @@
 // Test.assertEquals(formatDuration(3600), "1 hour");
 // Test.assertEquals(formatDuration(3662), "1 hour, 1 minute and 2 seconds");
 
-function solution(list) {
-  const result = []
-  for (let i = 0; i < list.length; i += 1) {
-    if(list[i] === list[i-1]+1 && list[i] === list[i+1]-1  ) {
-      result.push('!')
+// function solution(list) {
+//   const result = []
+//   for (let i = 0; i < list.length; i += 1) {
+//     if(list[i] === list[i-1]+1 && list[i] === list[i+1]-1  ) {
+//       result.push('!')
+//     } else {
+//       result.push(list[i])
+//     }
+//   }
+//   return result.join(',').replace(/(,!){2,}/gm, '!').replace(/(,!,)/gi, '!').replace(/(!,)/gi, '!').replace(/!/gi, '-')
+//  }
+
+// console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
+// // "-6,-3-1,3-5,7-11,14,15,17-20"));
+
+const flatArr = (arr) => {
+  for (let i=0; i< arr.length; i++) {
+    if(Array.isArray(arr[i])) {
+         arr.splice(i, 1, ...flatArr(arr[i]))
     } else {
-      result.push(list[i])
+      if (typeof(arr[i]) !== 'number' || isNaN(arr[i])) {
+        arr.splice(i, 1)
+         i--
+        }
     }
   }
-  return result.join(',').replace(/(,!){2,}/gm, '!').replace(/(,!,)/gi, '!').replace(/(!,)/gi, '!').replace(/!/gi, '-')
- }
+  return arr;  
+}
 
-console.log(solution([-6, -3, -2, -1, 0, 1, 3, 4, 5, 7, 8, 9, 10, 11, 14, 15, 17, 18, 19, 20]))
-// "-6,-3-1,3-5,7-11,14,15,17-20"));
-
+console.log(flatArr([1,5,[1, '3234', 2], [4, null], null,'sdfasdf', NaN]))

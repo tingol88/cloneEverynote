@@ -1,4 +1,4 @@
-import { ActionTypes } from "./redux/actionTypes";
+import { ActionTypes, ActionNoteTypes } from "./redux/actionTypes";
 // писал по другой db
 // export type NoteType = {
 //   id: string;
@@ -50,3 +50,19 @@ export type actionUpdateSurnameType = {
   type: typeof ActionTypes.CHANGE_SURNAME;
   payload: string;
 };
+
+// actions note 
+export type actionCreateNoteType = {
+  type: typeof ActionNoteTypes.CREATE_NOTE;
+  payload: NoteType;
+}
+
+export type actionEditNoteType = {
+  type: typeof ActionNoteTypes.EDIT_NOTE;
+  payload: NoteType;
+}
+
+export type actionDeleteNoteType = {
+  type: typeof ActionNoteTypes.DELETE_NOTE;
+  payload: NoteType;
+}

@@ -2,21 +2,22 @@ import React from "react";
 export interface AuthorProps {}
 const divStyles = {
   border: "1px solid black",
-  
+  display: 'flex',
+  justifyContent: "center",
 };
-const wrapper = {
-  border: "1px solid black",
-  margin: "auto auto",
-  width: "300px",
-  hight: "300px",
-  display: "grid",
-};
+const wrStyles = {
+  display: 'grid',
+}
+
+const img = {
+  order: -1,
+}
 const Author: React.FC<AuthorProps> = () => {
   return (
     <div style={divStyles} className="author">
-      <div className="wrapper">
+      <div style={wrStyles} className="wrapper">
         <h2> Иван Иванович </h2>
-        <img src="https://globalmsk.ru/usr/person/big-person-15629077401.jpg" />
+        <img style={img} src="https://globalmsk.ru/usr/person/big-person-15629077401.jpg" />
         <p>Описание про автора </p>
       </div>
     </div>
